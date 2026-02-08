@@ -149,27 +149,6 @@ body {
     }
 }
 
-/* 手機橫向：遊戲置中 */
-@media (max-width: 768px) and (orientation: landscape) {
-    body {
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-        padding-left: max(10px, env(safe-area-inset-left));
-        padding-right: max(10px, env(safe-area-inset-right));
-        padding-top: max(10px, env(safe-area-inset-top));
-        padding-bottom: max(10px, env(safe-area-inset-bottom));
-    }
-
-    #game-container {
-        visibility: visible;
-        margin: auto;
-        max-width: min(960px, calc(100vw - 20px));
-        max-height: calc(100vh - 20px);
-        max-height: calc(100dvh - 20px);
-    }
-}
-
 /* ========== 平板 ========== */
 @media (max-width: 1024px) {
     body {
@@ -202,6 +181,29 @@ body {
         max-height: calc(100dvh - 24px);
         border-radius: 16px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* 手機橫向：畫布縮小、留邊、置中（寫在 768px 後以覆蓋） */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+
+    #game-container {
+        visibility: visible;
+        margin: 0 auto;
+        width: 100%;
+        max-width: min(960px, calc(100vw - 48px));
+        max-height: calc(100vh - 40px);
+        max-height: calc(100dvh - 40px);
+        flex-shrink: 0;
     }
 }
 
@@ -244,18 +246,24 @@ body {
     }
 }
 
-/* 防止橫向時遊戲過扁：限制最小高度，並置中 */
+/* 防止橫向時遊戲過扁：畫布縮小、留邊、置中 */
 @media (max-height: 500px) and (orientation: landscape) {
     body {
         align-items: center;
         justify-content: center;
+        padding: 16px;
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+        padding-top: max(16px, env(safe-area-inset-top));
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
     }
 
     #game-container {
         max-height: 90vh;
         max-height: 90dvh;
-        width: auto;
-        max-width: min(960px, calc(100vw - 20px));
-        margin: auto;
+        width: 100%;
+        max-width: min(960px, calc(100vw - 40px));
+        margin: 0 auto;
+        flex-shrink: 0;
     }
 }
