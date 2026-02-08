@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+#background-dots {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* 背景圓點漂浮動畫（與遊戲框內相同風格） */
+#background-dots .dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+    animation: bg-dot-float 10s ease-in-out infinite;
+}
+
+@keyframes bg-dot-float {
+    0%, 100% { transform: translate(var(--x), var(--y)) translate(0, 0); }
+    25%      { transform: translate(var(--x), var(--y)) translate(40px, -30px); }
+    50%      { transform: translate(var(--x), var(--y)) translate(-30px, 40px); }
+    75%      { transform: translate(var(--x), var(--y)) translate(25px, 30px); }
+}
+
+#game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 960 / 540;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+/* 高解析度 canvas 縮放顯示，提升文字與邊緣清晰度（2x 像素） */
+#game-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+/* 響應式設計 */
+@media (max-width: 1000px) {
+    #game-container {
+        max-width: 100%;
+    }
+    
+    body {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 5px;
+    }
+}
+

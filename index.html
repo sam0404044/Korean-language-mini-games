@@ -1,109 +1,16 @@
-import Phaser from "phaser";
-
-const QUESTIONS = [
-  { zh: "謝謝", ko: "고마워", choices: ["미안해", "고마워", "괜찮아", "안녕"] },
-  { zh: "對不起", ko: "미안해", choices: ["미안해", "축하해", "잘자", "맞아"] },
-  { zh: "沒關係", ko: "괜찮아", choices: ["괜찮아", "도와줘", "사랑해", "배고파"] },
-];
-
-class QuizScene extends Phaser.Scene {
-  constructor() {
-    super("quiz");
-    this.score = 0;
-    this.qi = 0;
-    this.timeLeft = 3;
-    this.timerEvent = null;
-  }
-
-  create() {
-    this.cameras.main.setBackgroundColor("#0f172a");
-
-    this.title = this.add.text(20, 16, "Korean Reflex Quiz", { fontSize: "22px", fontFamily: "system-ui" });
-    this.scoreText = this.add.text(740, 20, "Score: 0", { fontSize: "18px", fontFamily: "system-ui" });
-
-    this.card = this.add.rectangle(480, 170, 900, 150, 0xffffff, 0.06).setOrigin(0.5);
-
-    this.prompt = this.add.text(60, 120, "請選出對應的韓語：", { fontSize: "18px", color: "#cbd5e1", fontFamily: "system-ui" });
-    this.zhText = this.add.text(480, 175, "", { fontSize: "46px", color: "#f8fafc", fontFamily: "system-ui" }).setOrigin(0.5);
-
-    // timer bar
-    this.barBg = this.add.rectangle(480, 245, 860, 14, 0xffffff, 0.12).setOrigin(0.5);
-    this.bar = this.add.rectangle(50, 245, 860, 14, 0xffffff, 0.85).setOrigin(0, 0.5);
-
-    // answer buttons
-    this.buttons = [];
-    const startX = 60, startY = 300, btnW = 420, btnH = 64, gap = 16;
-
-    for (let i = 0; i < 4; i++) {
-      const col = i % 2, row = Math.floor(i / 2);
-      const x = startX + col * (btnW + gap);
-      const y = startY + row * (btnH + gap);
-
-      const rect = this.add.rectangle(x, y, btnW, btnH, 0xffffff, 0.08).setOrigin(0, 0);
-      rect.setInteractive({ useHandCursor: true });
-
-      const label = this.add.text(x + 18, y + 18, "", { fontSize: "22px", color: "#f8fafc", fontFamily: "system-ui" });
-
-      rect.on("pointerdown", () => this.pick(label.text));
-
-      this.buttons.push({ rect, label });
-    }
-
-    this.feedback = this.add.text(480, 500, "", { fontSize: "18px", color: "#f8fafc", fontFamily: "system-ui" }).setOrigin(0.5);
-
-    this.nextQuestion();
-  }
-
-  nextQuestion() {
-    const q = QUESTIONS[this.qi % QUESTIONS.length];
-    this.qi++;
-    this.current = q;
-
-    this.zhText.setText(q.zh);
-    this.feedback.setText("");
-
-    const shuffled = Phaser.Utils.Array.Shuffle(q.choices.slice());
-    this.buttons.forEach((b, i) => b.label.setText(`${i + 1}. ${shuffled[i]}`));
-
-    this.timeLeft = 3;
-    if (this.timerEvent) this.timerEvent.remove(false);
-
-    this.timerEvent = this.time.addEvent({
-      delay: 100,
-      loop: true,
-      callback: () => {
-        this.timeLeft -= 0.1;
-        const t = Phaser.Math.Clamp(this.timeLeft / 3, 0, 1);
-        this.bar.width = 860 * t;
-
-        if (this.timeLeft <= 0) {
-          this.feedback.setText(`⏱️ 超時：正解是「${q.ko}」`);
-          this.time.delayedCall(800, () => this.nextQuestion());
-        }
-      }
-    });
-  }
-
-  pick(text) {
-    if (!this.current) return;
-
-    if (text === this.current.ko) {
-      this.score += 10;
-      this.feedback.setText("✅ 正確！");
-    } else {
-      this.feedback.setText(`❌ 錯了：正解是「${this.current.ko}」`);
-    }
-
-    this.scoreText.setText(`Score: ${this.score}`);
-    if (this.timerEvent) this.timerEvent.remove(false);
-
-    this.time.delayedCall(800, () => this.nextQuestion());
-  }
-}
-
-new Phaser.Game({
-  type: Phaser.AUTO,
-  width: 960,
-  height: 540,
-  scene: [QuizScene],
-});
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>韓語反應測驗 - Korean Reflex Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+</head>
+<body>
+    <div id="background-dots"></div>
+    <div id="game-container"></div>
+    <script src="game.js"></script>
+    <script src="background-dots.js"></script>
+</body>
+</html>
