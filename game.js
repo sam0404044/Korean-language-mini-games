@@ -83,6 +83,18 @@ class StartScene extends Phaser.Scene {
       color: "#6b7280"
     }).setOrigin(0.5);
 
+    // 從分享連結進來時顯示朋友的分數（?score=XX）
+    const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+    const sharedScore = params.get('score');
+    if (sharedScore !== null && sharedScore !== '') {
+      this.add.text(480*R, 360*R, "你的朋友得到 " + sharedScore + " 分！等你來挑戰", {
+        fontSize: (20*R) + "px",
+        fontFamily: "system-ui",
+        color: "#334155",
+        fontWeight: "600"
+      }).setOrigin(0.5);
+    }
+
     // 開始按鈕
     const btnW = 300*R;
     const btnH = 60*R;
@@ -183,24 +195,58 @@ class ResultScene extends Phaser.Scene {
       fontWeight: "600"
     }).setOrigin(0.5);
 
-    // 重新開始按鈕
     const btnW = 300*R;
     const btnH = 60*R;
     const btnX = 480*R;
-    const btnY = 420*R;
     const btnRadius = 16*R;
 
-    const restartBtn = createRoundedRectGraphics(this, btnX, btnY, btnW, btnH, btnRadius, 0x475569, 1, 0x334155, 2*R);
-    restartBtn.setDepth(10);
-
-    const btnText = this.add.text(btnX, btnY, "再玩一次", {
+    // 分享到 FB 按鈕
+    const shareBtnY = 400*R;
+    const shareBtn = createRoundedRectGraphics(this, btnX, shareBtnY, btnW, btnH, btnRadius, 0x1877f2, 1, 0x1877f2, 2*R);
+    shareBtn.setDepth(10);
+    this.add.text(btnX, shareBtnY, "分享到 FB", {
       fontSize: (24*R) + "px",
       fontFamily: "system-ui",
       color: "#ffffff",
       fontWeight: "600"
     }).setOrigin(0.5).setDepth(10);
 
-    // 按鈕互動
+    const shareHitArea = new Phaser.Geom.Rectangle(btnX - btnW/2, shareBtnY - btnH/2, btnW, btnH);
+    shareBtn.setInteractive(shareHitArea, Phaser.Geom.Rectangle.Contains);
+    shareBtn.input.cursor = 'pointer';
+
+    shareBtn.on("pointerover", () => {
+      shareBtn.clear();
+      shareBtn.fillStyle(0x166fe5, 1);
+      shareBtn.lineStyle(2*R, 0x166fe5, 1);
+      shareBtn.fillRoundedRect(btnX - btnW/2, shareBtnY - btnH/2, btnW, btnH, btnRadius);
+      shareBtn.strokeRoundedRect(btnX - btnW/2, shareBtnY - btnH/2, btnW, btnH, btnRadius);
+    });
+    shareBtn.on("pointerout", () => {
+      shareBtn.clear();
+      shareBtn.fillStyle(0x1877f2, 1);
+      shareBtn.lineStyle(2*R, 0x1877f2, 1);
+      shareBtn.fillRoundedRect(btnX - btnW/2, shareBtnY - btnH/2, btnW, btnH, btnRadius);
+      shareBtn.strokeRoundedRect(btnX - btnW/2, shareBtnY - btnH/2, btnW, btnH, btnRadius);
+    });
+    shareBtn.on("pointerdown", () => {
+      const shareUrl = 'https://korean-language-mini-games.netlify.app/?score=' + this.finalScore;
+      const fbShareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl);
+      window.open(fbShareUrl, 'fb_share', 'width=600,height=400,noopener');
+    });
+
+    // 再玩一次按鈕
+    const btnY = 480*R;
+    const restartBtn = createRoundedRectGraphics(this, btnX, btnY, btnW, btnH, btnRadius, 0x475569, 1, 0x334155, 2*R);
+    restartBtn.setDepth(10);
+
+    this.add.text(btnX, btnY, "再玩一次", {
+      fontSize: (24*R) + "px",
+      fontFamily: "system-ui",
+      color: "#ffffff",
+      fontWeight: "600"
+    }).setOrigin(0.5).setDepth(10);
+
     const hitArea = new Phaser.Geom.Rectangle(btnX - btnW/2, btnY - btnH/2, btnW, btnH);
     restartBtn.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
     restartBtn.input.cursor = 'pointer';
