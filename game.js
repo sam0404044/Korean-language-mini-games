@@ -12,50 +12,6 @@ const QUESTIONS_KO = [
   { zh: "恭喜", ko: "축하해", choices: ["축하해", "고마워", "사랑해", "안녕"] },
   { zh: "晚安", ko: "잘자", choices: ["잘자", "안녕", "고마워", "사랑해"] },
   { zh: "我餓了", ko: "배고파", choices: ["배고파", "고마워", "미안해", "안녕"] },
-  { zh: "幫幫我", ko: "도와줘", choices: ["도와줘", "고마워", "사랑해", "안녕"] },
-  { zh: "好吃", ko: "맛있어", choices: ["맛있어", "맞아", "고마워", "미안해"] },
-  { zh: "多少錢", ko: "얼마예요", choices: ["얼마예요", "고마워", "맞아", "안녕"] },
-  { zh: "再來一份", ko: "한인분더", choices: ["한인분더", "고마워", "맛있어", "안녕"] },
-  { zh: "請給我", ko: "주세요", choices: ["주세요", "고마워", "미안해", "맞아"] },
-  { zh: "不用了", ko: "괜찮아요", choices: ["괜찮아요", "고마워", "미안해", "주세요"] },
-  { zh: "等一下", ko: "잠깐만요", choices: ["잠깐만요", "고마워", "안녕", "맞아"] },
-  { zh: "沒問題", ko: "문제없어요", choices: ["문제없어요", "괜찮아", "고마워", "미안해"] },
-  { zh: "真的嗎", ko: "진짜요", choices: ["진짜요", "고마워", "맞아", "안녕"] },
-  { zh: "不知道", ko: "몰라요", choices: ["몰라요", "고마워", "미안해", "맞아"] },
-  { zh: "我懂了", ko: "알겠어요", choices: ["알겠어요", "고마워", "미안해", "안녕"] },
-  { zh: "請稍等", ko: "잠시만요", choices: ["잠시만요", "고마워", "미안해", "안녕"] },
-  { zh: "辛苦了", ko: "수고했어요", choices: ["수고했어요", "고마워", "미안해", "안녕"] },
-  { zh: "加油", ko: "화이팅", choices: ["화이팅", "고마워", "맞아", "안녕"] },
-  { zh: "乾杯", ko: "건배", choices: ["건배", "고마워", "축하해", "안녕"] },
-];
-
-const QUESTIONS_JA = [
-  { zh: "謝謝", ja: "ありがとう", choices: ["すみません", "ありがとう", "大丈夫", "こんにちは"] },
-  { zh: "對不起", ja: "すみません", choices: ["すみません", "おめでとう", "おやすみ", "そうだ"] },
-  { zh: "沒關係", ja: "大丈夫", choices: ["大丈夫", "助けて", "愛してる", "お腹すいた"] },
-  { zh: "你好", ja: "こんにちは", choices: ["こんにちは", "ありがとう", "すみません", "おやすみ"] },
-  { zh: "再見", ja: "さようなら", choices: ["さようなら", "こんにちは", "ありがとう", "大丈夫"] },
-  { zh: "我愛你", ja: "愛してる", choices: ["愛してる", "ありがとう", "すみません", "こんにちは"] },
-  { zh: "對", ja: "そうだ", choices: ["そうだ", "大丈夫", "ありがとう", "すみません"] },
-  { zh: "恭喜", ja: "おめでとう", choices: ["おめでとう", "ありがとう", "愛してる", "こんにちは"] },
-  { zh: "晚安", ja: "おやすみ", choices: ["おやすみ", "こんにちは", "ありがとう", "愛してる"] },
-  { zh: "我餓了", ja: "お腹すいた", choices: ["お腹すいた", "ありがとう", "すみません", "こんにちは"] },
-  { zh: "幫幫我", ja: "助けて", choices: ["助けて", "ありがとう", "愛してる", "こんにちは"] },
-  { zh: "好吃", ja: "おいしい", choices: ["おいしい", "そうだ", "ありがとう", "すみません"] },
-  { zh: "多少錢", ja: "いくら", choices: ["いくら", "ありがとう", "そうだ", "こんにちは"] },
-  { zh: "再來一份", ja: "おかわり", choices: ["おかわり", "ありがとう", "おいしい", "こんにちは"] },
-  { zh: "請給我", ja: "ください", choices: ["ください", "ありがとう", "すみません", "そうだ"] },
-  { zh: "不用了", ja: "大丈夫です", choices: ["大丈夫です", "ありがとう", "すみません", "ください"] },
-  { zh: "等一下", ja: "ちょっと待って", choices: ["ちょっと待って", "ありがとう", "こんにちは", "そうだ"] },
-  { zh: "沒問題", ja: "問題ない", choices: ["問題ない", "大丈夫", "ありがとう", "すみません"] },
-  { zh: "真的嗎", ja: "本当", choices: ["本当", "ありがとう", "そうだ", "こんにちは"] },
-  { zh: "不知道", ja: "わからない", choices: ["わからない", "ありがとう", "すみません", "そうだ"] },
-  { zh: "我懂了", ja: "わかりました", choices: ["わかりました", "ありがとう", "すみません", "こんにちは"] },
-  { zh: "辛苦了", ja: "お疲れ様", choices: ["お疲れ様", "ありがとう", "すみません", "こんにちは"] },
-  { zh: "加油", ja: "頑張って", choices: ["頑張って", "ありがとう", "そうだ", "こんにちは"] },
-  { zh: "乾杯", ja: "乾杯", choices: ["乾杯", "ありがとう", "おめでとう", "こんにちは"] },
-  { zh: "早安", ja: "おはよう", choices: ["おはよう", "こんにちは", "ありがとう", "おやすみ"] },
-  { zh: "晚安（睡前）", ja: "おやすみなさい", choices: ["おやすみなさい", "こんにちは", "ありがとう", "おはよう"] },
 ];
 
 // 輔助函數：創建圓角矩形圖形
@@ -94,7 +50,7 @@ function updateRoundedRect(graphics, x, y, width, height, radius, fillColor, fil
   }
 }
 
-// 開始畫面（風格：橘綠色塊、圖示、等你來挑戰、玩過人數）
+// 開始畫面
 class StartScene extends Phaser.Scene {
   constructor() {
     super("start");
@@ -103,186 +59,84 @@ class StartScene extends Phaser.Scene {
   create() {
     this.cameras.main.setBackgroundColor("#f8fafc");
 
-    // 裝飾：半透明圓角卡片底
-    const cardW = 800*R, cardH = 420*R;
-    const card = createRoundedRectGraphics(this, 480*R, 300*R, cardW, cardH, 24*R, 0xffffff, 0.5, 0xe5e7eb, 1);
-    card.setDepth(0);
+    const centerX = 480*R;
 
-    // 裝飾：橘色、綠色色塊（多邊形/圓角矩形）
-    const orange1 = this.add.graphics();
-    orange1.fillStyle(0xf97316, 0.35);
-    orange1.fillRoundedRect(720*R, 120*R, 80*R, 80*R, 12*R);
-    orange1.setDepth(1);
-    const green1 = this.add.graphics();
-    green1.fillStyle(0x10b981, 0.35);
-    green1.fillRoundedRect(180*R, 140*R, 70*R, 70*R, 10*R);
-    green1.setDepth(1);
-    const orange2 = this.add.graphics();
-    orange2.fillStyle(0xfb923c, 0.25);
-    orange2.fillRoundedRect(800*R, 380*R, 60*R, 60*R, 8*R);
-    orange2.setDepth(1);
-    const green2 = this.add.graphics();
-    green2.fillStyle(0x14b8a6, 0.3);
-    green2.fillRoundedRect(120*R, 360*R, 55*R, 55*R, 8*R);
-    green2.setDepth(1);
-    const greyBlock = this.add.graphics();
-    greyBlock.fillStyle(0x94a3b8, 0.2);
-    greyBlock.fillRoundedRect(760*R, 200*R, 50*R, 50*R, 8*R);
-    greyBlock.setDepth(1);
+    // 整頁裝飾：兩橢圓皆漸層向內（外圈深、內圈淺），用同心橢圓模擬，最深不超過現有
+    const cx = centerX, cy = 270*R, color = 0x94a3b8;
+    const outerSteps = [
+      [972*R, 792*R, 0.07], [778*R, 634*R, 0.055], [583*R, 475*R, 0.04], [389*R, 317*R, 0.025], [194*R, 158*R, 0.01]
+    ];
+    const innerSteps = [
+      [540*R, 440*R, 0.07], [432*R, 352*R, 0.055], [324*R, 264*R, 0.04], [216*R, 176*R, 0.025], [108*R, 88*R, 0.01]
+    ];
+    const outer = this.add.graphics();
+    outerSteps.forEach(([w, h, a]) => { outer.fillStyle(color, a); outer.fillEllipse(cx, cy, w, h); });
+    outer.setDepth(0);
+    const bg = this.add.graphics();
+    innerSteps.forEach(([w, h, a]) => { bg.fillStyle(color, a); bg.fillEllipse(cx, cy, w, h); });
+    bg.setDepth(0);
 
-    // 圖示：問號圓形
-    const qCircle = this.add.graphics();
-    qCircle.fillStyle(0xe2e8f0, 0.9);
-    qCircle.lineStyle(2, 0xcbd5e1, 1);
-    qCircle.strokeCircle(340*R, 130*R, 28*R);
-    qCircle.fillCircle(340*R, 130*R, 28*R);
-    qCircle.setDepth(2);
-    this.add.text(340*R, 130*R, "?", {
-      fontSize: (28*R) + "px",
-      fontFamily: "system-ui",
-      color: "#64748b",
-      fontWeight: "700"
-    }).setOrigin(0.5).setDepth(3);
-    const qCircle2 = this.add.graphics();
-    qCircle2.fillStyle(0xe2e8f0, 0.85);
-    qCircle2.lineStyle(2, 0xcbd5e1, 1);
-    qCircle2.strokeCircle(620*R, 180*R, 22*R);
-    qCircle2.fillCircle(620*R, 180*R, 22*R);
-    qCircle2.setDepth(2);
-    this.add.text(620*R, 180*R, "?", {
-      fontSize: (22*R) + "px",
-      fontFamily: "system-ui",
-      color: "#64748b",
-      fontWeight: "700"
-    }).setOrigin(0.5).setDepth(3);
+    const lineW = 120*R;
+    const lineY = 188*R;
+    const line = this.add.graphics();
+    line.lineStyle(2*R, 0xcbd5e1, 0.8);
+    line.beginPath();
+    line.moveTo(centerX - lineW/2, lineY);
+    line.lineTo(centerX + lineW/2, lineY);
+    line.strokePath();
+    line.setDepth(1);
 
-    // 圖示：對話泡泡（簡單圓角矩形＋小三角）
-    const bubble = this.add.graphics();
-    bubble.fillStyle(0xf1f5f9, 0.95);
-    bubble.lineStyle(2, 0xe2e8f0, 1);
-    bubble.fillRoundedRect(680*R, 400*R, 64*R, 40*R, 8*R);
-    bubble.strokeRoundedRect(680*R, 400*R, 64*R, 40*R, 8*R);
-    bubble.fillStyle(0xf1f5f9, 0.95);
-    bubble.fillTriangle(700*R, 438*R, 710*R, 450*R, 720*R, 438*R);
-    bubble.setDepth(2);
-    const bubble2 = this.add.graphics();
-    bubble2.fillStyle(0xfed7aa, 0.4);
-    bubble2.lineStyle(1, 0xfdba74, 0.6);
-    bubble2.fillRoundedRect(660*R, 415*R, 40*R, 28*R, 6*R);
-    bubble2.strokeRoundedRect(660*R, 415*R, 40*R, 28*R, 6*R);
-    bubble2.setDepth(1);
-
-    // 主標題
-    const title = this.add.text(480*R, 150*R, "語言反應測驗", {
-      fontSize: (42*R) + "px",
+    // 標題、說明、按鈕 — 全部以 centerX 置中
+    const title = this.add.text(centerX, 155*R, "韓語測驗", {
+      fontSize: (56*R) + "px",
       fontFamily: "system-ui",
       color: "#1f2937",
       fontWeight: "700"
-    }).setOrigin(0.5).setDepth(10);
+    }).setOrigin(0.5, 0.5).setDepth(10);
 
-    const subtitleEn = this.add.text(480*R, 195*R, "Korean / Japanese Reflex Quiz", {
-      fontSize: (16*R) + "px",
-      fontFamily: "system-ui",
-      color: "#6b7280",
-      fontWeight: "500"
-    }).setOrigin(0.5).setDepth(10);
-
-    // 等你來挑戰
-    const challenge = this.add.text(480*R, 235*R, "等你來挑戰", {
-      fontSize: (20*R) + "px",
-      fontFamily: "system-ui",
-      color: "#475569",
-      fontWeight: "600"
-    }).setOrigin(0.5).setDepth(10);
-
-    // 說明
-    const description = this.add.text(480*R, 268*R, "共 25 題，每題 3 秒內作答", {
-      fontSize: (16*R) + "px",
+    const description = this.add.text(centerX, 218*R, "共 10 題，每題 3 秒內作答", {
+      fontSize: (24*R) + "px",
       fontFamily: "system-ui",
       color: "#6b7280"
-    }).setOrigin(0.5).setDepth(10);
+    }).setOrigin(0.5, 0.5).setDepth(10);
 
-    // 從分享連結進來時顯示朋友的分數（?score=XX）
     const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
     const sharedScore = params.get('score');
     if (sharedScore !== null && sharedScore !== '') {
-      this.add.text(480*R, 305*R, "你的朋友得到 " + sharedScore + " 分！", {
-        fontSize: (18*R) + "px",
+      this.add.text(centerX, 272*R, "你的朋友得到 " + sharedScore + " 分！等你來挑戰", {
+        fontSize: (24*R) + "px",
         fontFamily: "system-ui",
         color: "#334155",
         fontWeight: "600"
-      }).setOrigin(0.5).setDepth(10);
+      }).setOrigin(0.5, 0.5).setDepth(10);
     }
 
-    const btnW = 280*R;
-    const btnH = 56*R;
-    const btnX = 480*R;
-    const btnRadius = 14*R;
-    const gap = 20*R;
+    const btnW = 300*R;
+    const btnH = 62*R;
+    const btnRadius = 16*R;
 
-    const koBtnY = sharedScore ? 365*R : 335*R;
-    const koBtn = createRoundedRectGraphics(this, btnX, koBtnY, btnW, btnH, btnRadius, 0x475569, 1, 0x334155, 2*R);
-    koBtn.setDepth(10);
-    this.add.text(btnX, koBtnY, "韓語版", {
-      fontSize: (22*R) + "px",
+    const startBtnY = sharedScore ? 365*R : 325*R;
+    const startBtn = createRoundedRectGraphics(this, centerX, startBtnY, btnW, btnH, btnRadius, 0x475569, 1, 0x334155, 2*R);
+    startBtn.setDepth(10);
+
+    this.add.text(centerX, startBtnY, "開始遊戲", {
+      fontSize: (28*R) + "px",
       fontFamily: "system-ui",
       color: "#ffffff",
       fontWeight: "600"
-    }).setOrigin(0.5).setDepth(10);
-    koBtn.setInteractive(new Phaser.Geom.Rectangle(btnX - btnW/2, koBtnY - btnH/2, btnW, btnH), Phaser.Geom.Rectangle.Contains);
-    koBtn.input.cursor = 'pointer';
-    const setKoHover = (hover) => {
-      koBtn.clear();
-      koBtn.fillStyle(hover ? 0x334155 : 0x475569, 1);
-      koBtn.lineStyle(2*R, 0x334155, 1);
-      koBtn.fillRoundedRect(btnX - btnW/2, koBtnY - btnH/2, btnW, btnH, btnRadius);
-      koBtn.strokeRoundedRect(btnX - btnW/2, koBtnY - btnH/2, btnW, btnH, btnRadius);
+    }).setOrigin(0.5, 0.5).setDepth(10);
+    startBtn.setInteractive(new Phaser.Geom.Rectangle(centerX - btnW/2, startBtnY - btnH/2, btnW, btnH), Phaser.Geom.Rectangle.Contains);
+    startBtn.input.cursor = 'pointer';
+    const setHover = (hover) => {
+      startBtn.clear();
+      startBtn.fillStyle(hover ? 0x334155 : 0x475569, 1);
+      startBtn.lineStyle(2*R, 0x334155, 1);
+      startBtn.fillRoundedRect(centerX - btnW/2, startBtnY - btnH/2, btnW, btnH, btnRadius);
+      startBtn.strokeRoundedRect(centerX - btnW/2, startBtnY - btnH/2, btnW, btnH, btnRadius);
     };
-    koBtn.on("pointerover", () => setKoHover(true));
-    koBtn.on("pointerout", () => setKoHover(false));
-    koBtn.on("pointerdown", () => {
-      try { var n = parseInt(localStorage.getItem('playCount') || '0', 10); localStorage.setItem('playCount', String(n + 1)); } catch (e) {}
-      this.scene.start("quiz", { language: "ko" });
-    });
-
-    const jaBtnY = koBtnY + btnH + gap;
-    const jaBtn = createRoundedRectGraphics(this, btnX, jaBtnY, btnW, btnH, btnRadius, 0x475569, 1, 0x334155, 2*R);
-    jaBtn.setDepth(10);
-    this.add.text(btnX, jaBtnY, "日文版", {
-      fontSize: (22*R) + "px",
-      fontFamily: "system-ui",
-      color: "#ffffff",
-      fontWeight: "600"
-    }).setOrigin(0.5).setDepth(10);
-    jaBtn.setInteractive(new Phaser.Geom.Rectangle(btnX - btnW/2, jaBtnY - btnH/2, btnW, btnH), Phaser.Geom.Rectangle.Contains);
-    jaBtn.input.cursor = 'pointer';
-    jaBtn.on("pointerover", () => {
-      jaBtn.clear();
-      jaBtn.fillStyle(0x334155, 1);
-      jaBtn.lineStyle(2*R, 0x334155, 1);
-      jaBtn.fillRoundedRect(btnX - btnW/2, jaBtnY - btnH/2, btnW, btnH, btnRadius);
-      jaBtn.strokeRoundedRect(btnX - btnW/2, jaBtnY - btnH/2, btnW, btnH, btnRadius);
-    });
-    jaBtn.on("pointerout", () => {
-      jaBtn.clear();
-      jaBtn.fillStyle(0x475569, 1);
-      jaBtn.lineStyle(2*R, 0x334155, 1);
-      jaBtn.fillRoundedRect(btnX - btnW/2, jaBtnY - btnH/2, btnW, btnH, btnRadius);
-      jaBtn.strokeRoundedRect(btnX - btnW/2, jaBtnY - btnH/2, btnW, btnH, btnRadius);
-    });
-    jaBtn.on("pointerdown", () => {
-      try { var n = parseInt(localStorage.getItem('playCount') || '0', 10); localStorage.setItem('playCount', String(n + 1)); } catch (e) {}
-      this.scene.start("quiz", { language: "ja" });
-    });
-
-    // 右下角：玩過的人數（本機累計）
-    let playCount = 0;
-    try { playCount = parseInt(localStorage.getItem('playCount') || '0', 10); } catch (e) {}
-    this.add.text(920*R, 520*R, "玩過的人數：" + playCount, {
-      fontSize: (14*R) + "px",
-      fontFamily: "system-ui",
-      color: "#94a3b8"
-    }).setOrigin(1, 0.5).setDepth(10);
+    startBtn.on("pointerover", () => setHover(true));
+    startBtn.on("pointerout", () => setHover(false));
+    startBtn.on("pointerdown", () => { this.scene.start("quiz"); });
   }
 }
 
@@ -324,10 +178,10 @@ class ResultScene extends Phaser.Scene {
     // 評語
     let comment = "";
     let commentColor = "#1f2937";
-    if (this.finalScore >= 150) {
+    if (this.finalScore >= 80) {
       comment = "🎉 太棒了！";
       commentColor = "#10b981";
-    } else if (this.finalScore >= 100) {
+    } else if (this.finalScore >= 60) {
       comment = "👍 不錯喔！";
       commentColor = "#334155";
     } else {
@@ -347,59 +201,8 @@ class ResultScene extends Phaser.Scene {
     const btnX = 480*R;
     const btnRadius = 16*R;
 
-    const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
-
-    // 分享到 FB 按鈕（僅電腦版顯示）
-    if (isDesktop) {
-      const shareBtnY = 400*R;
-      const shareBtn = createRoundedRectGraphics(this, btnX, shareBtnY, btnW, btnH, btnRadius, 0x1877f2, 1, 0x1877f2, 2*R);
-      shareBtn.setDepth(10);
-      this.add.text(btnX, shareBtnY, "分享到 FB", {
-        fontSize: (24*R) + "px",
-        fontFamily: "system-ui",
-        color: "#ffffff",
-        fontWeight: "600"
-      }).setOrigin(0.5).setDepth(10);
-
-      const shareHitArea = new Phaser.Geom.Rectangle(btnX - btnW/2, shareBtnY - btnH/2, btnW, btnH);
-      shareBtn.setInteractive(shareHitArea, Phaser.Geom.Rectangle.Contains);
-      shareBtn.input.cursor = 'pointer';
-
-      shareBtn.on("pointerover", () => {
-        shareBtn.clear();
-        shareBtn.fillStyle(0x166fe5, 1);
-        shareBtn.lineStyle(2*R, 0x166fe5, 1);
-        shareBtn.fillRoundedRect(btnX - btnW/2, shareBtnY - btnH/2, btnW, btnH, btnRadius);
-        shareBtn.strokeRoundedRect(btnX - btnW/2, shareBtnY - btnH/2, btnW, btnH, btnRadius);
-      });
-      shareBtn.on("pointerout", () => {
-        shareBtn.clear();
-        shareBtn.fillStyle(0x1877f2, 1);
-        shareBtn.lineStyle(2*R, 0x1877f2, 1);
-        shareBtn.fillRoundedRect(btnX - btnW/2, shareBtnY - btnH/2, btnW, btnH, btnRadius);
-        shareBtn.strokeRoundedRect(btnX - btnW/2, shareBtnY - btnH/2, btnW, btnH, btnRadius);
-      });
-      shareBtn.on("pointerdown", () => {
-        const shareUrl = 'https://korean-language-mini-games.netlify.app/?score=' + this.finalScore;
-        const shareTitle = '韓語反應測驗 - Korean Reflex Quiz';
-        const shareText = '等你來挑戰';
-
-        if (typeof navigator !== 'undefined' && navigator.share) {
-          navigator.share({
-            title: shareTitle,
-            text: shareText,
-            url: shareUrl
-          }).then(() => {}).catch(() => {
-            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl), '_blank', 'noopener');
-          });
-        } else {
-          window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl), '_blank', 'noopener');
-        }
-      });
-    }
-
-    // 再玩一次按鈕（電腦版在下方，手機版單一按鈕略上移）
-    const btnY = isDesktop ? 480*R : 420*R;
+    // 再玩一次按鈕
+    const btnY = 420*R;
     const restartBtn = createRoundedRectGraphics(this, btnX, btnY, btnW, btnH, btnRadius, 0x475569, 1, 0x334155, 2*R);
     restartBtn.setDepth(10);
 
@@ -439,12 +242,11 @@ class ResultScene extends Phaser.Scene {
 class QuizScene extends Phaser.Scene {
   constructor() {
     super("quiz");
-    this.maxQuestions = 25;
+    this.maxQuestions = 10;
   }
 
   init(data) {
-    this.language = data.language || "ko";
-    this.questions = this.language === "ja" ? QUESTIONS_JA : QUESTIONS_KO;
+    this.questions = QUESTIONS_KO;
   }
 
   create() {
@@ -457,12 +259,8 @@ class QuizScene extends Phaser.Scene {
     
     this.cameras.main.setBackgroundColor("#f8fafc");
 
-    const isKo = this.language === "ko";
-    const titleStr = isKo ? "Korean Reflex Quiz" : "Japanese Reflex Quiz";
-    const promptStr = isKo ? "請選出對應的韓語：" : "請選出對應的日文：";
-
     // 標題和分數
-    this.title = this.add.text(20*R, 16*R, titleStr, { 
+    this.title = this.add.text(20*R, 16*R, "韓語測驗", { 
       fontSize: (22*R) + "px", 
       fontFamily: "system-ui",
       color: "#1f2937",
@@ -476,7 +274,7 @@ class QuizScene extends Phaser.Scene {
     }).setDepth(10);
     
     // 題數顯示
-    this.questionText = this.add.text(480*R, 20*R, "第 1 / 25 題", {
+    this.questionText = this.add.text(480*R, 20*R, "第 1 / 10 題", {
       fontSize: (18*R) + "px",
       fontFamily: "system-ui",
       color: "#6b7280",
@@ -488,7 +286,7 @@ class QuizScene extends Phaser.Scene {
     this.card.setDepth(10);
 
     // 提示文字和中文問題
-    this.prompt = this.add.text(60*R, 120*R, promptStr, { 
+    this.prompt = this.add.text(60*R, 120*R, "請選出對應的韓語：", { 
       fontSize: (18*R) + "px", 
       color: "#4b5563", 
       fontFamily: "system-ui" 
@@ -584,7 +382,7 @@ class QuizScene extends Phaser.Scene {
     this.qi++;
     this.current = q;
 
-    this.questionText.setText(`第 ${this.qi} / 25 題`);
+    this.questionText.setText(`第 ${this.qi} / 10 題`);
 
     this.zhText.setText(q.zh);
     this.feedback.setText("");
@@ -622,7 +420,7 @@ class QuizScene extends Phaser.Scene {
 
         // 時間到
         if (this.timeLeft <= 0) {
-          const correct = q.ko || q.ja;
+          const correct = q.ko;
           this.feedback.setText(`⏱️ 超時：正解是「${correct}」`);
           if (this.timerEvent) this.timerEvent.remove(false);
 
@@ -644,7 +442,7 @@ class QuizScene extends Phaser.Scene {
     // 移除選項編號來比較
     const selectedAnswer = text.replace(/^\d+\.\s*/, "");
 
-    const correct = this.current.ko || this.current.ja;
+    const correct = this.current.ko;
     if (selectedAnswer === correct) {
       this.score += 10;
       this.feedback.setText("✅ 正確！");
