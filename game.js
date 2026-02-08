@@ -391,17 +391,18 @@ class QuizScene extends Phaser.Scene {
     const shuffled = Phaser.Utils.Array.Shuffle(q.choices.slice());
     this.buttons.forEach((b, i) => b.label.setText(`${i + 1}. ${shuffled[i]}`));
 
-    // 重置計時器（用實際經過時間計算，進度條平滑遞減）
+    // 重置計時器（延後一幀再開始，避免在「開始遊戲」或場景切換時就偷跑）
     this.timeLeft = 3;
-    this.questionStartTime = this.time.now;
     if (this.timerEvent) this.timerEvent.remove(false);
+    this.timerEvent = null;
 
-    // 計時器事件：高頻率更新讓進度條平滑
-    this.timerEvent = this.time.addEvent({
-      delay: 16,
-      loop: true,
-      callback: () => {
-        this.timeLeft = 3 - (this.time.now - this.questionStartTime) / 1000;
+    const startTimer = () => {
+      this.questionStartTime = this.time.now;
+      this.timerEvent = this.time.addEvent({
+        delay: 16,
+        loop: true,
+        callback: () => {
+          this.timeLeft = 3 - (this.time.now - this.questionStartTime) / 1000;
         const t = Phaser.Math.Clamp(this.timeLeft / 3, 0, 1);
         const newWidth = this.barMaxWidth * t;
 
@@ -434,6 +435,9 @@ class QuizScene extends Phaser.Scene {
         }
       }
     });
+    };
+
+    this.time.delayedCall(0, startTimer);
   }
 
   pick(text) {
