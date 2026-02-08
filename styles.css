@@ -63,9 +63,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    max-width: 960px;
+    /* 固定 960:540 比例，依視窗取較小邊縮放，不拉伸 */
     aspect-ratio: 960 / 540;
+    width: min(100%, min(960px, calc((100dvh - 40px) * 960 / 540)));
+    max-width: 960px;
+    height: auto;
     max-height: calc(100vh - 40px);
     max-height: calc(100dvh - 40px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
@@ -78,14 +80,16 @@ body {
     position: relative;
     z-index: 1;
     touch-action: manipulation;
+    flex-shrink: 0;
 }
 
-/* 高解析度 canvas 縮放顯示 */
+/* 高解析度 canvas：等比例縮放，禁止拉伸 */
 #game-container canvas {
     width: 100% !important;
     height: 100% !important;
     display: block;
     touch-action: none;
+    object-fit: contain;
 }
 
 /* ========== 手機直向：請旋轉為橫向提示 ========== */
@@ -163,6 +167,7 @@ body {
     }
 
     #game-container {
+        width: min(100%, min(960px, calc((100dvh - 32px) * 960 / 540)));
         max-height: calc(100vh - 32px);
         max-height: calc(100dvh - 32px);
         border-radius: 20px;
@@ -180,6 +185,7 @@ body {
     }
 
     #game-container {
+        width: min(100%, min(960px, calc((100dvh - 24px) * 960 / 540)));
         max-height: calc(100vh - 24px);
         max-height: calc(100dvh - 24px);
         border-radius: 16px;
@@ -187,7 +193,7 @@ body {
     }
 }
 
-/* 手機橫向：適度留邊、畫布盡量放大、置中 */
+/* 手機橫向：固定比例、不拉伸、置中 */
 @media (max-width: 768px) and (orientation: landscape) {
     body {
         align-items: center;
@@ -202,28 +208,28 @@ body {
     #game-container {
         visibility: visible;
         margin: 0 auto;
-        width: 100%;
+        flex-shrink: 0;
+        width: min(min(960px, calc(100vw - 24px)), calc((100dvh - 24px) * 960 / 540));
         max-width: min(960px, calc(100vw - 24px));
+        height: auto;
         max-height: calc(100vh - 24px);
         max-height: calc(100dvh - 24px);
-        flex-shrink: 0;
     }
 }
 
-/* ========== 手機直向 ========== */
-@media (max-width: 480px) {
+/* ========== 手機直向（僅直向，橫向用 768px 比例規則）========== */
+@media (max-width: 480px) and (orientation: portrait) {
     body {
         padding: 8px;
         padding-left: max(8px, env(safe-area-inset-left));
         padding-right: max(8px, env(safe-area-inset-right));
-        padding-top: max(8px, env(safe-area-inset-top));
+        padding-top: max(12px, env(safe-area-inset-top));
         padding-bottom: max(8px, env(safe-area-inset-bottom));
         align-items: flex-start;
-        padding-top: max(12px, env(safe-area-inset-top));
     }
 
     #game-container {
-        width: 100%;
+        width: min(100%, min(960px, calc((100dvh - 24px) * 960 / 540)));
         max-width: 100%;
         max-height: calc(100vh - 24px);
         max-height: calc(100dvh - 24px);
@@ -249,7 +255,7 @@ body {
     }
 }
 
-/* 防止橫向時遊戲過扁：適度留邊、置中 */
+/* 防止橫向時遊戲過扁：固定比例、置中 */
 @media (max-height: 500px) and (orientation: landscape) {
     body {
         align-items: center;
@@ -262,11 +268,12 @@ body {
     }
 
     #game-container {
-        max-height: 90vh;
-        max-height: 90dvh;
-        width: 100%;
-        max-width: min(960px, calc(100vw - 24px));
         margin: 0 auto;
         flex-shrink: 0;
+        width: min(min(960px, calc(100vw - 24px)), calc((90dvh - 24px) * 960 / 540));
+        max-width: min(960px, calc(100vw - 24px));
+        height: auto;
+        max-height: 90vh;
+        max-height: 90dvh;
     }
 }
