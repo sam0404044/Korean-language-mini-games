@@ -1,0 +1,22 @@
+# Excel files
+*.xlsx
+*.xls
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (if using Node.js)
+node_modules/
+
+# Build files
+dist/
+build/
+
