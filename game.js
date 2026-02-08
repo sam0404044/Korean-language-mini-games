@@ -90,7 +90,7 @@ class StartScene extends Phaser.Scene {
     const btnY = 400*R;
     const btnRadius = 16*R;
 
-    const startBtn = createRoundedRectGraphics(this, btnX, btnY, btnW, btnH, btnRadius, 0x3b82f6, 1, 0x3b82f6, 2*R);
+    const startBtn = createRoundedRectGraphics(this, btnX, btnY, btnW, btnH, btnRadius, 0x475569, 1, 0x334155, 2*R);
     startBtn.setDepth(10);
 
     const btnText = this.add.text(btnX, btnY, "遊戲開始", {
@@ -107,16 +107,16 @@ class StartScene extends Phaser.Scene {
 
     startBtn.on("pointerover", () => {
       startBtn.clear();
-      startBtn.fillStyle(0x2563eb, 1);
-      startBtn.lineStyle(2*R, 0x2563eb, 1);
+      startBtn.fillStyle(0x334155, 1);
+      startBtn.lineStyle(2*R, 0x334155, 1);
       startBtn.fillRoundedRect(btnX - btnW/2, btnY - btnH/2, btnW, btnH, btnRadius);
       startBtn.strokeRoundedRect(btnX - btnW/2, btnY - btnH/2, btnW, btnH, btnRadius);
     });
 
     startBtn.on("pointerout", () => {
       startBtn.clear();
-      startBtn.fillStyle(0x3b82f6, 1);
-      startBtn.lineStyle(2*R, 0x3b82f6, 1);
+      startBtn.fillStyle(0x475569, 1);
+      startBtn.lineStyle(2*R, 0x334155, 1);
       startBtn.fillRoundedRect(btnX - btnW/2, btnY - btnH/2, btnW, btnH, btnRadius);
       startBtn.strokeRoundedRect(btnX - btnW/2, btnY - btnH/2, btnW, btnH, btnRadius);
     });
@@ -158,7 +158,7 @@ class ResultScene extends Phaser.Scene {
     const scoreValue = this.add.text(480*R, 280*R, this.finalScore.toString(), {
       fontSize: (64*R) + "px",
       fontFamily: "system-ui",
-      color: "#3b82f6",
+      color: "#334155",
       fontWeight: "700"
     }).setOrigin(0.5);
 
@@ -170,7 +170,7 @@ class ResultScene extends Phaser.Scene {
       commentColor = "#10b981";
     } else if (this.finalScore >= 40) {
       comment = "👍 不錯喔！";
-      commentColor = "#3b82f6";
+      commentColor = "#334155";
     } else {
       comment = "💪 繼續加油！";
       commentColor = "#f59e0b";
@@ -190,7 +190,7 @@ class ResultScene extends Phaser.Scene {
     const btnY = 420*R;
     const btnRadius = 16*R;
 
-    const restartBtn = createRoundedRectGraphics(this, btnX, btnY, btnW, btnH, btnRadius, 0x3b82f6, 1, 0x3b82f6, 2*R);
+    const restartBtn = createRoundedRectGraphics(this, btnX, btnY, btnW, btnH, btnRadius, 0x475569, 1, 0x334155, 2*R);
     restartBtn.setDepth(10);
 
     const btnText = this.add.text(btnX, btnY, "再玩一次", {
@@ -207,16 +207,16 @@ class ResultScene extends Phaser.Scene {
 
     restartBtn.on("pointerover", () => {
       restartBtn.clear();
-      restartBtn.fillStyle(0x2563eb, 1);
-      restartBtn.lineStyle(2*R, 0x2563eb, 1);
+      restartBtn.fillStyle(0x334155, 1);
+      restartBtn.lineStyle(2*R, 0x334155, 1);
       restartBtn.fillRoundedRect(btnX - btnW/2, btnY - btnH/2, btnW, btnH, btnRadius);
       restartBtn.strokeRoundedRect(btnX - btnW/2, btnY - btnH/2, btnW, btnH, btnRadius);
     });
 
     restartBtn.on("pointerout", () => {
       restartBtn.clear();
-      restartBtn.fillStyle(0x3b82f6, 1);
-      restartBtn.lineStyle(2*R, 0x3b82f6, 1);
+      restartBtn.fillStyle(0x475569, 1);
+      restartBtn.lineStyle(2*R, 0x334155, 1);
       restartBtn.fillRoundedRect(btnX - btnW/2, btnY - btnH/2, btnW, btnH, btnRadius);
       restartBtn.strokeRoundedRect(btnX - btnW/2, btnY - btnH/2, btnW, btnH, btnRadius);
     });
@@ -266,8 +266,8 @@ class QuizScene extends Phaser.Scene {
       fontWeight: "500"
     }).setOrigin(0.5).setDepth(10);
 
-    // 問題卡片（圓角矩形）
-    this.card = createRoundedRectGraphics(this, 480*R, 170*R, 900*R, 150*R, 16*R, 0x3b82f6, 0.08, 0x1e40af, 4*R);
+    // 問題卡片（圓角矩形，邊框：低彩度深藍）
+    this.card = createRoundedRectGraphics(this, 480*R, 170*R, 900*R, 150*R, 16*R, 0x475569, 0.12, 0x334155, 4*R);
     this.card.setDepth(10);
 
     // 提示文字和中文問題
@@ -326,8 +326,8 @@ class QuizScene extends Phaser.Scene {
       // 按鈕互動效果
       rect.on("pointerover", () => {
         rect.clear();
-        rect.fillStyle(0x3b82f6, 0.1);
-        rect.lineStyle(2*R, 0x3b82f6, 1);
+        rect.fillStyle(0x475569, 0.15);
+        rect.lineStyle(2*R, 0x334155, 1);
         rect.fillRoundedRect(centerX - btnW/2, centerY - btnH/2, btnW, btnH, btnRadius);
         rect.strokeRoundedRect(centerX - btnW/2, centerY - btnH/2, btnW, btnH, btnRadius);
       });
@@ -378,28 +378,29 @@ class QuizScene extends Phaser.Scene {
     const shuffled = Phaser.Utils.Array.Shuffle(q.choices.slice());
     this.buttons.forEach((b, i) => b.label.setText(`${i + 1}. ${shuffled[i]}`));
 
-    // 重置計時器
+    // 重置計時器（用實際經過時間計算，進度條平滑遞減）
     this.timeLeft = 3;
+    this.questionStartTime = this.time.now;
     if (this.timerEvent) this.timerEvent.remove(false);
 
-    // 計時器事件
+    // 計時器事件：高頻率更新讓進度條平滑
     this.timerEvent = this.time.addEvent({
-      delay: 100,
+      delay: 16,
       loop: true,
       callback: () => {
-        this.timeLeft -= 0.1;
+        this.timeLeft = 3 - (this.time.now - this.questionStartTime) / 1000;
         const t = Phaser.Math.Clamp(this.timeLeft / 3, 0, 1);
         const newWidth = this.barMaxWidth * t;
-        
-        // 更新圓角進度條（從左側開始）
+
+        // 更新進度條：低彩度深藍漸層、圓角
         this.bar.clear();
         if (newWidth > 0) {
-          this.bar.fillStyle(0x3b82f6, 1);
+          this.bar.fillGradientStyle(0x475569, 0x334155, 0x475569, 0x334155, 1, 1, 1, 1);
           this.bar.fillRoundedRect(
-            this.barStartX, 
-            this.barY - this.barHeight/2, 
-            newWidth, 
-            this.barHeight, 
+            this.barStartX,
+            this.barY - this.barHeight / 2,
+            newWidth,
+            this.barHeight,
             this.barRadius
           );
         }
@@ -407,8 +408,8 @@ class QuizScene extends Phaser.Scene {
         // 時間到
         if (this.timeLeft <= 0) {
           this.feedback.setText(`⏱️ 超時：正解是「${q.ko}」`);
-          
-          // 檢查是否完成7題（答完第7題後，this.qi 會是 7）
+          if (this.timerEvent) this.timerEvent.remove(false);
+
           if (this.qi >= this.maxQuestions) {
             this.time.delayedCall(800, () => {
               this.scene.start("result", { score: this.score });

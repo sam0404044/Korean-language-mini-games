@@ -4,16 +4,28 @@
     box-sizing: border-box;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
+    /* 安全區域（手機劉海、底部橫條） */
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+    padding-top: max(20px, env(safe-area-inset-top));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
 }
 
 #background-dots {
@@ -51,37 +63,199 @@ body {
     width: 100%;
     max-width: 960px;
     aspect-ratio: 960 / 540;
+    max-height: calc(100vh - 40px);
+    max-height: calc(100dvh - 40px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     border-radius: 24px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
     z-index: 1;
+    touch-action: manipulation;
 }
 
-/* 高解析度 canvas 縮放顯示，提升文字與邊緣清晰度（2x 像素） */
+/* 高解析度 canvas 縮放顯示 */
 #game-container canvas {
     width: 100% !important;
     height: 100% !important;
     display: block;
+    touch-action: none;
 }
 
-/* 響應式設計 */
-@media (max-width: 1000px) {
+/* ========== 手機直向：請旋轉為橫向提示 ========== */
+.rotate-prompt {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+    padding-top: max(24px, env(safe-area-inset-top));
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+
+.rotate-prompt-icon {
+    font-size: 64px;
+    line-height: 1;
+    color: #334155;
+    animation: rotate-prompt-pulse 1.5s ease-in-out infinite;
+}
+
+.rotate-prompt-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1f2937;
+    text-align: center;
+}
+
+.rotate-prompt-sub {
+    font-size: 15px;
+    color: #6b7280;
+    text-align: center;
+}
+
+@keyframes rotate-prompt-pulse {
+    0%, 100% { opacity: 1; transform: rotate(-90deg); }
+    50% { opacity: 0.85; transform: rotate(-60deg); }
+}
+
+/* 僅在手機直向時顯示旋轉提示、隱藏遊戲並置中預留 */
+@media (max-width: 768px) and (orientation: portrait) {
+    .rotate-prompt {
+        display: flex;
+    }
+
+    body {
+        align-items: center;
+        justify-content: center;
+    }
+
     #game-container {
-        max-width: 100%;
+        visibility: hidden;
+        position: absolute;
+        pointer-events: none;
     }
-    
+}
+
+/* 手機橫向：遊戲置中 */
+@media (max-width: 768px) and (orientation: landscape) {
     body {
+        align-items: center;
+        justify-content: center;
         padding: 10px;
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+        padding-top: max(10px, env(safe-area-inset-top));
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+
+    #game-container {
+        visibility: visible;
+        margin: auto;
+        max-width: min(960px, calc(100vw - 20px));
+        max-height: calc(100vh - 20px);
+        max-height: calc(100dvh - 20px);
     }
 }
 
-@media (max-width: 600px) {
+/* ========== 平板 ========== */
+@media (max-width: 1024px) {
     body {
-        padding: 5px;
+        padding: 16px;
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+        padding-top: max(16px, env(safe-area-inset-top));
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+
+    #game-container {
+        max-height: calc(100vh - 32px);
+        max-height: calc(100dvh - 32px);
+        border-radius: 20px;
     }
 }
 
+/* ========== 手機橫向 / 大手機 ========== */
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+
+    #game-container {
+        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* ========== 手機直向 ========== */
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+        padding-left: max(8px, env(safe-area-inset-left));
+        padding-right: max(8px, env(safe-area-inset-right));
+        padding-top: max(8px, env(safe-area-inset-top));
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+        align-items: flex-start;
+        padding-top: max(12px, env(safe-area-inset-top));
+    }
+
+    #game-container {
+        width: 100%;
+        max-width: 100%;
+        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
+        border-radius: 12px;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    }
+}
+
+/* 極小螢幕（直向小手機） */
+@media (max-width: 360px) {
+    body {
+        padding: 6px;
+        padding-left: max(6px, env(safe-area-inset-left));
+        padding-right: max(6px, env(safe-area-inset-right));
+        padding-top: max(6px, env(safe-area-inset-top));
+        padding-bottom: max(6px, env(safe-area-inset-bottom));
+    }
+
+    #game-container {
+        max-height: calc(100vh - 16px);
+        max-height: calc(100dvh - 16px);
+        border-radius: 10px;
+    }
+}
+
+/* 防止橫向時遊戲過扁：限制最小高度，並置中 */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        align-items: center;
+        justify-content: center;
+    }
+
+    #game-container {
+        max-height: 90vh;
+        max-height: 90dvh;
+        width: auto;
+        max-width: min(960px, calc(100vw - 20px));
+        margin: auto;
+    }
+}

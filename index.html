@@ -2,12 +2,20 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#f8fafc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>韓語反應測驗 - Korean Reflex Quiz</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
 </head>
 <body>
+    <div id="rotate-prompt" class="rotate-prompt" aria-hidden="true">
+        <div class="rotate-prompt-icon">↻</div>
+        <p class="rotate-prompt-text">請將手機轉為橫向</p>
+        <p class="rotate-prompt-sub">以獲得最佳遊戲體驗</p>
+    </div>
     <div id="background-dots"></div>
     <div id="game-container"></div>
     <script src="game.js"></script>
